@@ -1,0 +1,87 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom right, #8e2de2, #4a00e0);
+}
+
+.container1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+}
+
+.container2 {
+    background: #fff;
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    gap: 30px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    width: 80%;
+}
+
+h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: #f2f2f2;
+    border-radius: 5px;
+    font-size: 0.95rem;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px 20px;
+    background: #5865f2;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #4752c4;
+}
+
+.hidebtn {
+    background: #5865f2;
+}
+
+.revealbtn {
+    background: #5865f2;
+}
+
+.hidebtn:hover,
+.revealbtn:hover {
+    background: #4752c4;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+

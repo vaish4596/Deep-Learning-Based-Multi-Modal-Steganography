@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Steganography Tool</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background: linear-gradient(120deg, #74ebd5, #ACB6E5);
+      min-height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .card {
+      border-radius: 20px;
+      box-shadow: 0px 6px 15px rgba(0,0,0,0.2);
+      margin-bottom: 20px;
+    }
+    .btn-custom {
+      border-radius: 25px;
+      padding: 10px 20px;
+      font-weight: bold;
+    }
+    h2 {
+      font-weight: bold;
+      color: #2c3e50;
+    }
+    .result-box {
+      background: #f8f9fa;
+      border-left: 5px solid #2c3e50;
+      padding: 15px;
+      margin-top: 15px;
+      border-radius: 10px;
+    }
+    img, video, audio {
+      max-width: 100%;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.15);
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-5">
+    <h1 class="text-center mb-4 text-white">DEEP LEARNING BASED MULTI MODAL STEGANOGRAPHY </h1>
+
+    <!-- Hide Text -->
+    <div class="card p-4">
+      <h2>TEXT STEGANOGRAPHY</h2>
+      <form method="POST" action="/hide_text">
+        <div class="row g-2">
+          <div class="col-md-4"><input type="text" name="secret_msg" class="form-control" placeholder="Secret message" required /></div>
+          <div class="col-md-4"><input type="password" name="password" class="form-control" placeholder="Password" required /></div>
+          <div class="col-md-3"><input type="text" name="cover_msg" class="form-control" placeholder="Cover message" required /></div>
+          <div class="col-md-1 d-grid"><button type="submit" class="btn btn-success btn-custom">Hide ➡</button></div>
+        </div>
+      </form>
+      {% if stego_msg %}
+        <div class="result-box"><strong>✅ Stego Message:</strong><p>{{ stego_msg }}</p></div>
+      {% endif %}
+    </div>
+
+    <!-- Reveal Text -->
+    <div class="card p-4">
+      <h2>Reveal Text</h2>
+      <form method="POST" action="/reveal_text">
+        <div class="row g-2">
+          <div class="col-md-4"><input type="password" name="password" class="form-control" placeholder="Password" required /></div>
+          <div class="col-md-6"><input type="text" name="stego_msg" value="{{ stego_msg or '' }}" class="form-control" placeholder="Stego message" required /></div>
+          <div class="col-md-2 d-grid"><button type="submit" class="btn btn-primary btn-custom">Reveal ➡</button></div>
+        </div>
+      </form>
+      {% if revealed_msg %}
+        <div class="result-box"><strong>🔓 Revealed Message:</strong><p>{{ revealed_msg }}</p></div>
+      {% endif %}
+    </div>
+
+    <!-- Hide Image -->
+    <div class="card p-4">
+      <h2>IMAGE STEGANOGRAPHY</h2>
+      <form method="POST" action="/hide_image" enctype="multipart/form-data">
+        <div class="row g-2">
+          <div class="col-md-4"><input type="file" name="cover_img" class="form-control" required /></div>
+          <div class="col-md-4"><input type="file" name="secret_img" class="form-control" required /></div>
+          <div class="col-md-3"><input type="password" name="password" class="form-control" placeholder="Password" required /></div>
+          <div class="col-md-1 d-grid"><button type="submit" class="btn btn-warning btn-custom">Hide ➡</button></div>
+        </div>
+      </form>
+      {% if result_image %}
+        <div class="result-box text-center mt-3">
+          <strong>✅ Stego Image:</strong><br />
+          <img src="{{ url_for('static', filename=result_image) }}" alt="Stego Image" />
+          <br />
+          <a href="{{ url_for('static', filename=result_image) }}" download class="btn btn-outline-primary mt-2">⬇ Download</a>
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Reveal Image -->
+    <div class="card p-4">
+      <h2>Reveal Image</h2>
+      <form method="POST" action="/reveal_image" enctype="multipart/form-data">
+        <div class="row g-2">
+          <div class="col-md-8"><input type="file" name="stego_img" class="form-control" required /></div>
+          <div class="col-md-4"><input type="password" name="password" class="form-control" placeholder="Password" required /></div>
+          <div class="col-md-12 d-grid mt-2"><button type="submit" class="btn btn-danger btn-custom">Reveal ➡</button></div>
+        </div>
+      </form>
+      {% if revealed_image %}
+        <div class="result-box text-center mt-3">
+          <strong>🔓 Revealed Secret Image:</strong><br />
+          <img src="{{ url_for('static', filename=revealed_image) }}" alt="Revealed Secret" />
+          <br />
+          <a href="{{ url_for('static', filename=revealed_image) }}" download class="btn btn-outline-success mt-2">⬇ Download</a>
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Hide Video -->
+    <div class="card p-4">
+      <h2>VIDEO STEAGANOGRAPHY</h2>
+      <form method="POST" action="/hide_video" enctype="multipart/form-data">
+        <div class="row g-2">
+          <div class="col-md-6"><input type="file" name="cover_video" class="form-control" required /></div>
+          <div class="col-md-6"><input type="file" name="secret_video" class="form-control" required /></div>
+        </div>
+        <div class="mt-2"><input type="password" name="password" class="form-control" placeholder="Password" required /></div>
+        <div class="d-grid mt-3"><button type="submit" class="btn btn-dark btn-custom">Hide Video ➡</button></div>
+      </form>
+      {% if result_video %}
+        <div class="result-box text-center mt-3">
+          <strong>✅ Stego Video:</strong><br />
+          <video controls width="480"><source src="{{ url_for('static', filename=result_video) }}" type="video/mp4" /></video>
+          <br />
+          <a href="{{ url_for('static', filename=result_video) }}" download class="btn btn-outline-primary mt-2">⬇ Download</a>
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Reveal from Video -->
+    <div class="card p-4">
+      <h2>Reveal from Video</h2>
+      <form method="POST" action="/reveal_video" enctype="multipart/form-data">
+        <div class="row g-2">
+          <div class="col-md-6"><input type="file" name="stego_video" class="form-control" required /></div>
+          <div class="col-md-6"><input type="password" name="password" class="form-control" placeholder="Password" required /></div>
+          <div class="col-md-12 d-grid mt-3"><button type="submit" class="btn btn-secondary btn-custom">Reveal ➡</button></div>
+        </div>
+      </form>
+      {% if revealed_video %}
+        <div class="result-box text-center mt-3">
+          <strong>🔓 Revealed Secret Video:</strong><br />
+          <video controls width="480"><source src="{{ url_for('static', filename=revealed_video) }}" type="video/mp4" /></video>
+          <br />
+          <a href="{{ url_for('static', filename=revealed_video) }}" download class="btn btn-outline-success mt-2">⬇ Download</a>
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Hide Audio -->
+    <div class="card p-4">
+      <h2>AUDIO STEGANOGRAPHY</h2>
+      <form method="POST" action="/hide_audio" enctype="multipart/form-data">
+        <div class="row g-2">
+          <div class="col-md-6"><input type="file" name="cover_audio" class="form-control" accept=".wav" required /></div>
+          <div class="col-md-6"><input type="file" name="secret_audio" class="form-control" accept=".wav" required /></div>
+        </div>
+        <div class="mt-2"><input type="password" name="password" class="form-control" placeholder="Password" required /></div>
+        <div class="d-grid mt-3"><button type="submit" class="btn btn-info btn-custom text-white">Hide Audio ➡</button></div>
+      </form>
+      {% if result_audio %}
+        <div class="result-box text-center mt-3">
+          <strong>✅ Stego Audio:</strong><br />
+          <audio controls>
+            <source src="{{ url_for('static', filename=result_audio) }}" type="audio/wav" />
+            Your browser does not support the audio tag.
+          </audio><br />
+          <a href="{{ url_for('static', filename=result_audio) }}" download class="btn btn-outline-primary mt-2">⬇ Download</a>
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Reveal Audio -->
+    <div class="card p-4">
+      <h2>Reveal Audio</h2>
+      <form method="POST" action="/reveal_audio" enctype="multipart/form-data">
+        <div class="row g-2">
+          <div class="col-md-8"><input type="file" name="stego_audio" class="form-control" accept=".wav" required /></div>
+          <div class="col-md-4"><input type="password" name="password" class="form-control" placeholder="Password" required /></div>
+        </div>
+        <div class="d-grid mt-3"><button type="submit" class="btn btn-secondary btn-custom">Reveal Audio ➡</button></div>
+      </form>
+      {% if revealed_audio %}
+        <div class="result-box text-center mt-3">
+          <strong>🔓 Revealed Secret Audio:</strong><br />
+          <audio controls>
+            <source src="{{ url_for('static', filename=revealed_audio) }}" type="audio/wav" />
+            Your browser does not support the audio tag.
+          </audio><br />
+          <a href="{{ url_for('static', filename=revealed_audio) }}" download class="btn btn-outline-success mt-2">⬇ Download</a>
+        </div>
+      {% endif %}
+    </div>
+
+  </div>
+</body>
+</html>
