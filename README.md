@@ -106,41 +106,49 @@ Ensures:
 - Security Testing
 
 ---
-
 ## 💻 How to Run the Project
 
 ### 1️⃣ Clone the repository
-```bash
-git clone https://github.com/vaish4596/deep-learning-multimodal-steganography.git
-cd deep-learning-multimodal-steganography
+
+git clone https://github.com/vaish4596/Deep-Learning-Based-Multi-Modal-Steganography.git
+cd Deep-Learning-Based-Multi-Modal-Steganography
+
 2️⃣ Create virtual environment
 python -m venv venv
 venv\Scripts\activate
+
 3️⃣ Install dependencies
 pip install -r requirements.txt
+
 4️⃣ Run the application
 python app.py
+
 5️⃣ Open in browser
 http://127.0.0.1:8000
-📸 Results
-Text steganography interface
-Image steganography output
-Audio stego results
-Video embedding and extraction
 
-(Add screenshots here)
+📸 Results
+
+Text Steganography Interface
+Image Steganography Output
+Audio Steganography Results
+Video Embedding and Extraction
 
 🎯 Applications
-Secure communication
-Digital watermarking
-Military & defense systems
-Data protection
-Multimedia copyright protection
+
+Secure Communication
+Digital Watermarking
+Military & Defense Systems
+Data Protection
+Multimedia Copyright Protection
+
 🔮 Future Scope
+
 Integration with GANs and Transformers
-Real-time streaming steganography
-Mobile & cloud deployment
-IoT-based secure communication
-Advanced encryption integration
-👩‍💻 Authors
+Real-time Streaming Steganography
+Mobile & Cloud Deployment
+IoT-based Secure Communication
+Advanced Encryption Integration
+
+👩‍💻 Author
+
 Vaishnavi Shetty
