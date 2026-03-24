@@ -106,49 +106,75 @@ Ensures:
 - Security Testing
 
 ---
+
 ## 💻 How to Run the Project
 
 ### 1️⃣ Clone the repository
-
+```bash
 git clone https://github.com/vaish4596/Deep-Learning-Based-Multi-Modal-Steganography.git
 cd Deep-Learning-Based-Multi-Modal-Steganography
+````
 
-2️⃣ Create virtual environment
+### 2️⃣ Create virtual environment
+
+```bash
 python -m venv venv
 venv\Scripts\activate
+```
 
-3️⃣ Install dependencies
+### 3️⃣ Install dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
-4️⃣ Run the application
+### 4️⃣ Run the application
+
+```bash
 python app.py
+```
 
-5️⃣ Open in browser
+### 5️⃣ Open in browser
+
+```text
 http://127.0.0.1:8000
+```
 
-📸 Results
+---
 
-Text Steganography Interface
-Image Steganography Output
-Audio Steganography Results
-Video Embedding and Extraction
+## 📸 Results
 
-🎯 Applications
+* Text Steganography Interface
+* Image Steganography Output
+* Audio Steganography Results
+* Video Embedding and Extraction
 
-Secure Communication
-Digital Watermarking
-Military & Defense Systems
-Data Protection
-Multimedia Copyright Protection
+---
 
-🔮 Future Scope
+## 🎯 Applications
 
-Integration with GANs and Transformers
-Real-time Streaming Steganography
-Mobile & Cloud Deployment
-IoT-based Secure Communication
-Advanced Encryption Integration
+* Secure Communication
+* Digital Watermarking
+* Military & Defense Systems
+* Data Protection
+* Multimedia Copyright Protection
 
-👩‍💻 Author
+---
 
-Vaishnavi Shetty
+## 🔮 Future Scope
+
+* Integration with GANs and Transformers
+* Real-time Streaming Steganography
+* Mobile & Cloud Deployment
+* IoT-based Secure Communication
+* Advanced Encryption Integration
+
+---
+
+## 👩‍💻 Author
+
+**Vaishnavi Shetty**
+
+```
+
+
